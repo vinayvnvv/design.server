@@ -5,6 +5,10 @@ const PagesSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  _id: {
+    required: true,
+    type: mongoose.Types.ObjectId,
+  },
   path: String,
   open_in_new: Boolean,
 });

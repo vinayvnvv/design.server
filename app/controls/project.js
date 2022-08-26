@@ -14,6 +14,19 @@ class ProjectClass {
       });
     }
   }
+  getProject(userId, projectId, callback) {
+    if (!userId) {
+      callback({ error: "user not found" });
+    } else {
+      Project.findOne({ _id: projectId, user: userId }, (err, res) => {
+        if (err) {
+          callback({ error: err, status: 402 });
+        } else {
+          callback(false, res);
+        }
+      });
+    }
+  }
   addProject(userId, data, callback) {
     const project = new Project({ user: userId, ...data });
     project

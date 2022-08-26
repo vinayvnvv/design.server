@@ -14,6 +14,17 @@ router.post("/:id", (req, res) => {
   });
 });
 
+router.patch("/:id", (req, res) => {
+  const { userId, body, params } = req;
+  navbar.editNav(userId, params.id, body, (err, data) => {
+    if (err) {
+      Response.error(err, res);
+    } else {
+      Response.success(data, res);
+    }
+  });
+});
+
 router.patch("/:id/:menuId", (req, res) => {
   const { userId, body, params } = req;
   navbar.editMenuItem(userId, params.id, params.menuId, body, (err, data) => {

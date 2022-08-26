@@ -2,9 +2,14 @@ const { Project } = require("./../models");
 const content = require("./content");
 class ProjectClass {
   addPage(userId, id, data, callback) {
+    console.log("addPage", data);
     Project.findOneAndUpdate(
       { user: userId, _id: id },
-      { $push: { pages: data } },
+      {
+        $push: {
+          pages: data,
+        },
+      },
       { new: true }
     )
       .then((res) => {

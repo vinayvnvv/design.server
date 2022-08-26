@@ -4,6 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 // local
 const routes = require("./routes");
 const authMiddleware = require("./middlewares/auth");
@@ -20,6 +21,7 @@ const main = async () => {
     .catch((err) => console.log(err));
   // express app
   app.use(bodyParser.json());
+  app.use(cors());
   app.use("/api/*", authMiddleware);
   app.use("/api", routes);
   app.get("/", (__, res) => {

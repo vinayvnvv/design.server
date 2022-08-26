@@ -20,7 +20,7 @@ const projectSchema = new mongoose.Schema({
   },
   pages: {
     type: [PagesSchema],
-    default: [{ name: "Home", path: "/" }],
+    default: [{ name: "Home", path: "/", _id: new mongoose.Types.ObjectId() }],
   },
 });
 

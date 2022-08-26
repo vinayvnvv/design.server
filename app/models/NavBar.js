@@ -33,6 +33,10 @@ const NavBarSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  visible: {
+    type: Boolean,
+    default: false,
+  },
   height: {
     type: String,
     default: "62",

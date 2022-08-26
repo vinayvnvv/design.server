@@ -2,6 +2,24 @@ const mongoose = require("mongoose");
 const { Project, NavBarMenuSchema } = require("./../models");
 const navBarMenu = mongoose.model("NavBarMenuSchema", NavBarMenuSchema);
 class NavBarClass {
+  editNav(userId, id, data, callback) {
+    var updateObj = {};
+    Object.keys(data).forEach((key) => {
+      updateObj[`navbar.${key}`] = data[key];
+    });
+    Project.findOneAndUpdate(
+      { user: userId, _id: id },
+      { $set: updateObj },
+      { new: true }
+    )
+      .then((res) => {
+        callback(false, res);
+      })
+      .catch((err) => {
+        console.log(err);
+        callback({ error: err, status: 402 });
+      });
+  }
   addMenuItem(userId, id, data, callback) {
     const doc = new navBarMenu(data);
     doc
